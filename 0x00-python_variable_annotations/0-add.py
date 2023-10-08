@@ -5,7 +5,7 @@ and a float `b` as arguments and returns the addition of both args.
 """
 
 
-def add(a: float, b: float):
+def add(a: float, b: float) -> float:
     """add two floats and returns the result."""
     return a + b
 
