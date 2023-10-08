@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 """
-Defines a type-annotated function `concat` that takes a string `str1`
-and a string `str2` as arguments and returns a concatenated string.
+Defines a type-annotated function `add` that takes a float `a`
+and a float `b` as arguments and returns the addition of both args.
 """
 
 
-def concat(str1: str, str2: str):
-    """concatenates two strings and returns the result."""
-    return str1 + str2
+def add(a: float, b: float):
+    """add two floats and returns the result."""
+    return a + b
 
 
 if __name__ == "__main__":
-    vybs = concat("hello", "world")
+    vybs = add(2.1, 4.5)
     print(vybs)
