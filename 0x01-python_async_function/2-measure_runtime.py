@@ -2,7 +2,9 @@
 """waiting for youuu ..."""
 import time
 import asyncio
-wait_n = __import__('1-concurrent_coroutines').wait_n
+from typing import Any, Callable, Coroutine, List
+wait_n: Callable[[int, int], Coroutine[Any, Any, List[float]]] = __import__(
+    '1-concurrent_coroutines').wait_n
 
 
 def measure_time(n: int, delay: int) -> float:
@@ -15,7 +17,7 @@ def measure_time(n: int, delay: int) -> float:
 
 
 if __name__ == "__main__":
-    n = 5
-    max_delay = 9
+    n: int = 5
+    max_delay: int = 9
 
     print(measure_time(n, max_delay))
