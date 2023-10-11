@@ -7,12 +7,11 @@ returns it.
 """
 import asyncio
 import random
-from typing import Union
 
 
-async def wait_random(max_delay: Union[int, None] = 10) -> float:
+async def wait_random(max_delay: int = 10) -> float:
     """waiting for you.."""
-    r_delay: float = random.randrange(0, max_delay)
+    r_delay: int = random.randint(0, max_delay)
     await asyncio.sleep(r_delay)
     return r_delay
 
