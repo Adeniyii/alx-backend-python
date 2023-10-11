@@ -11,7 +11,7 @@ import random
 
 async def wait_random(max_delay: int = 10) -> float:
     """waiting for you.."""
-    r_delay: int = random.randint(0, max_delay)
+    r_delay: float = random.random() * max_delay
     await asyncio.sleep(r_delay)
     return r_delay
 
