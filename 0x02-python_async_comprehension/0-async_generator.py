@@ -2,7 +2,7 @@
 """oooooooooouu"""
 import asyncio
 import random
-from typing import AsyncGenerator
+from typing import AsyncGenerator, List
 
 
 async def async_generator() -> AsyncGenerator[float, None]:
@@ -14,7 +14,7 @@ async def async_generator() -> AsyncGenerator[float, None]:
 
 if __name__ == "__main__":
     async def print_yielded_values():
-        result = []
+        result: List[float] = []
         async for i in async_generator():
             result.append(i)
         print(result)
