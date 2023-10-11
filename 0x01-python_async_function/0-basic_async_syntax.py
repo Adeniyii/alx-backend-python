@@ -11,5 +11,11 @@ import random
 
 async def wait_random(max_delay=10):
     """waiting for you.."""
-    await asyncio.sleep(max_delay)
-    return random.random()
+    r_delay = random.randrange(0, max_delay)
+    await asyncio.sleep(r_delay)
+    return r_delay
+
+
+if __name__ == "__main__":
+    res = asyncio.run(wait_random(5))
+    print(res)
