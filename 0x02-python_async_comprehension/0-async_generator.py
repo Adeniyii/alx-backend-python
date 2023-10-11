@@ -2,10 +2,10 @@
 """oooooooooouu"""
 import asyncio
 import random
-from typing import Generator, List
+from typing import AsyncIterator
 
 
-async def async_generator() -> Generator[float, None, None]:
+async def async_generator() -> AsyncIterator[float]:
     """coroutineeeeeee"""
     for _ in range(10):
         await asyncio.sleep(1)
@@ -14,7 +14,7 @@ async def async_generator() -> Generator[float, None, None]:
 
 if __name__ == "__main__":
     async def print_yielded_values():
-        result: List[float] = []
+        result = []
         async for i in async_generator():
             result.append(i)
         print(result)
