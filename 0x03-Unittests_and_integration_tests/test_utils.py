@@ -22,7 +22,8 @@ class TestAccessNestedMap(unittest.TestCase):
     ])
     def test_access_nested_map(
             self, nested_map: Mapping, path: Sequence, expected: Any):
-        """"""
+        """test_access_nested_map method
+        """
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
     @parameterized.expand([
@@ -36,14 +37,16 @@ class TestAccessNestedMap(unittest.TestCase):
 
 
 class TestGetJson(unittest.TestCase):
-    """"""
+    """TestGetJson class
+    """
 
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
     def test_get_json(self, url: str, payload: Mapping):
-        """"""
+        """test_get_json method
+        """
         with patch('utils.requests.get') as mock_get:
             mock_get.return_value.json.return_value = payload
             self.assertEqual(utils.get_json(url), payload)
@@ -51,10 +54,12 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """"""
+    """TestMemoize class
+    """
 
     def test_memoize(self):
-        """"""
+        """test_memoize method
+        """
 
         class TestClass:
             """TestClass class
