@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-""""""
+"""Unittests and integration tests module
+"""
 from typing import Any, Mapping, Sequence
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 from parameterized import parameterized
 
 access_nested_map = __import__("utils").access_nested_map
@@ -11,7 +12,8 @@ utils = __import__("utils")
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """"""
+    """TestAccessNestedMap class
+    """
 
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
@@ -55,8 +57,11 @@ class TestMemoize(unittest.TestCase):
         """"""
 
         class TestClass:
-
+            """TestClass class
+            """
             def a_method(self):
+                """a_method method
+                """
                 return 42
 
             @memoize
