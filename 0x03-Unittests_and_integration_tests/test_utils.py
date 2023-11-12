@@ -2,10 +2,11 @@
 """"""
 from typing import Any, Mapping, Sequence
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from parameterized import parameterized
 
 access_nested_map = __import__("utils").access_nested_map
+memoize = __import__("utils").memoize
 utils = __import__("utils")
 
 
@@ -45,3 +46,28 @@ class TestGetJson(unittest.TestCase):
             mock_get.return_value.json.return_value = payload
             self.assertEqual(utils.get_json(url), payload)
             mock_get.assert_called_once_with(url)
+
+
+class TestMemoize(unittest.TestCase):
+    """"""
+
+    def test_memoize(self):
+        """"""
+
+        class TestClass:
+
+            def a_method(self):
+                return 42
+
+            @memoize
+            def a_property(self):
+                return self.a_method()
+
+        with patch.object(TestClass, 'a_method') as test_a_method:
+            test_a_method.return_value = 42
+
+            my_object = TestClass()
+            my_object.a_property
+            my_object.a_property
+
+            test_a_method.assert_called_once()
