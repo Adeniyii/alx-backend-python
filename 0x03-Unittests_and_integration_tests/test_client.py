@@ -31,7 +31,8 @@ class TestGithubOrgClient(unittest.TestCase):
         ("abc", False)
     ])
     def test_public_repos_url(self, org: str, expected: bool):
-        """"""
+        """test_public_repos_url method
+        """
         with patch(
                 "client.GithubOrgClient.org", new_callable=PropertyMock
         ) as mock_org:
@@ -42,7 +43,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @patch("client.get_json")
     def test_public_repos(self, mock_get_json):
-        """"""
+        """test_public_repos method
+        """
         payload = {
             "repo_url": "mimi",
             "repos": [
