@@ -2,7 +2,7 @@
 """Unittests and integration tests module
 """
 import unittest
-from unittest.mock import patch
+from unittest.mock import PropertyMock, patch
 
 from parameterized import parameterized
 client = __import__("client")
@@ -32,8 +32,36 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_public_repos_url(self, org: str, expected: bool):
         """"""
-        my_client = client.GithubOrgClient(org)
-        with patch(my_client, "org") as mock_org:
+        with patch(
+                "client.GithubOrgClient.org", new_callable=PropertyMock
+        ) as mock_org:
             mock_org.return_value = {"repos_url": expected}
+            my_client = client.GithubOrgClient(org)
             self.assertEqual(my_client._public_repos_url, expected)
             mock_org.assert_called_once()
+
+    @patch("client.get_json")
+    def test_public_repos(self, mock_get_json):
+        """"""
+        payload = {
+            "repo_url": "mimi",
+            "repos": [
+                {"name": "candle", "licence": None},
+                {"name": "vanilla", "licence": None},
+                {"name": "chocolate", "licence": None},
+            ]
+        }
+        mock_get_json.return_value = payload["repos"]
+
+        with patch(
+            "client.GithubOrgClient._public_repos_url",
+            new_callable=PropertyMock
+        ) as mock_public_repos_url:
+            mock_public_repos_url.return_value = payload["repo_url"]
+
+            my_client = client.GithubOrgClient("")
+            self.assertEqual(my_client.public_repos(None), [
+                             "candle", "vanilla", "chocolate"])
+
+            mock_public_repos_url.assert_called_once()
+        mock_get_json.assert_called_once_with("mimi")
